@@ -62,7 +62,16 @@ type CategoryState = {
   category: Category[];
 };
 const initialState: CategoryState = {
-  category: [],
+  category: [
+    {
+      id: 0,
+      name: "Action",
+    },
+    {
+      id: 1,
+      name: "Comedy",
+    },
+  ],
 };
 export const CategorySlice = createSlice({
   name: "Category",

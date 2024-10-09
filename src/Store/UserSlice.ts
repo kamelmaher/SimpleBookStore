@@ -18,6 +18,7 @@ type UserState = {
   isLogin: boolean;
   loginnedUser: User;
 };
+
 const initialUsers: User[] = [
   {
     id: 0,
@@ -137,7 +138,7 @@ export const UserSlice = createSlice({
         }
       })
       localStorage.setItem("users" , JSON.stringify(users))
-    },
+    }
   },
 });
 
@@ -151,5 +152,5 @@ export const {
   isLogin,
   getLoginedUser,
   addToCart,
-  deleteFromCart
+  deleteFromCart,
 } = UserSlice.actions;

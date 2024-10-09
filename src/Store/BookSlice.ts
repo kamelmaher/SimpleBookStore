@@ -18,6 +18,11 @@ export type BookType = {
   reviews: review[];
 };
 
+type rateProps = {
+  review: review;
+  book: BookType;
+};
+
 const books:BookType[] = [
   {
     id: 0,
@@ -94,8 +99,21 @@ export const BookSlice = createSlice({
 
       //state.books.unshift(action.payload)
       localStorage.setItem("books" , JSON.stringify(state.books))
+    },
+    rateBook: (state , action: PayloadAction<rateProps>) => {
+      const data = localStorage.getItem("books")
+      if(data) {
+        const parsedData = JSON.parse(data)
+        state.books = parsedData
+      }
+      state.books.map(e => {
+        if(e.id == action.payload.book.id) {
+          e.reviews.push(action.payload.review)
+        }
+      })
+      localStorage.setItem("books" , JSON.stringify(state.books))
     }
   },
 });
 export default BookSlice.reducer;
-export const { addBook , getBooks , deleteBook , editBook} = BookSlice.actions;
+export const { addBook , getBooks , deleteBook , editBook , rateBook} = BookSlice.actions;

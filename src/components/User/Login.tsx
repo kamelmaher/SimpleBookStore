@@ -28,7 +28,7 @@ const Login = () => {
                     <label>Email</label>
                 </div>
                 <div className="form-floating mb-3 col-md-6">
-                    <input type="text" className="form-control" placeholder="Test" value={Password} onChange={e => {
+                    <input type="password" className="form-control" placeholder="Test" value={Password} onChange={e => {
                         setPass(e.target.value)
                     }} />
                     <label>Password</label>
