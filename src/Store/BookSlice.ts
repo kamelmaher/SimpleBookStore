@@ -18,7 +18,40 @@ export type BookType = {
   reviews: review[];
 };
 
-const books:BookType[] = []
+const books:BookType[] = [
+  {
+    id: 0,
+    title: "Book 1" ,
+    Category: "Action",
+    price: 50,
+    description: "Test Test",
+    reviews: []
+  },
+  {
+    id: 1,
+    title: "Book 2" ,
+    Category: "Comedy",
+    price: 60,
+    description: "Test Test",
+    reviews: []
+  },
+  {
+    id: 2,
+    title: "Book 3" ,
+    Category: "Action",
+    price: 20,
+    description: "Test Test",
+    reviews: []
+  },
+  {
+    id: 3,
+    title: "Book 4" ,
+    Category: "Comedy",
+    price: 50,
+    description: "Test Test",
+    reviews: []
+  },
+]
 
 type BookState = {
   books: BookType[];
