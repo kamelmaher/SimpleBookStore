@@ -64,48 +64,40 @@ type BookState = {
 const initialState: BookState = {
   books: books,
 };
+const getData = () => {
+  const data = localStorage.getItem("books");
+  if (data) {
+    const parsedData =JSON.parse(data); 
+    return parsedData 
+  }else {
+    return books
+  }
+}
 
 export const BookSlice = createSlice({
   name: "Book",
   initialState,
   reducers: {
     addBook: (state, action: PayloadAction<BookType>) => {
-      const data = localStorage.getItem("books")
-      if(data) {
-        state.books = JSON.parse(data);
-      }
+      state.books = getData()
       state.books.push(action.payload)
       localStorage.setItem("books" , JSON.stringify(state.books))
     },
     getBooks: (state) => {
-      const data = localStorage.getItem("books");
-      if (data) {
-        state.books = JSON.parse(data);
-      }
+      state.books = getData()
     },
     deleteBook: (state , action: PayloadAction<number>) => {
-      const data = localStorage.getItem("books");
-      if (data) {
-        state.books = JSON.parse(data);
-      }
+      state.books = getData()
       const newBooks = state.books.filter(e => e.id != action.payload)
       state.books = newBooks
       localStorage.setItem("books" , JSON.stringify(state.books))
     },
     editBook: (state , action: PayloadAction<BookType>) => {
       state.books = state.books.map(e => e.id == action.payload.id ? action.payload : e)
-      // state.books = action.payload
-      //state.books = state.books.filter(e => e.id != action.payload.id)
-
-      //state.books.unshift(action.payload)
       localStorage.setItem("books" , JSON.stringify(state.books))
     },
     rateBook: (state , action: PayloadAction<rateProps>) => {
-      const data = localStorage.getItem("books")
-      if(data) {
-        const parsedData = JSON.parse(data)
-        state.books = parsedData
-      }
+      state.books = getData()
       state.books.map(e => {
         if(e.id == action.payload.book.id) {
           e.reviews.push(action.payload.review)

@@ -43,17 +43,19 @@ const initialState: UserState = {
     cart: [],
   },
 };
-
+const getData = () => {
+  const data = localStorage.getItem("users");
+  if (data) {
+    const parsedData = JSON.parse(data);
+    return parsedData;
+  } else return initialUsers;
+};
 export const UserSlice = createSlice({
   name: "User",
   initialState,
   reducers: {
     signUp: (state, action: PayloadAction<User>) => {
-      const data = localStorage.getItem("users");
-      if (data) {
-        const parsedData = JSON.parse(data);
-        state.users = parsedData;
-      }
+      state.users = getData();
       state.users.push(action.payload);
       localStorage.setItem("users", JSON.stringify(state.users));
     },
@@ -62,11 +64,7 @@ export const UserSlice = createSlice({
       localStorage.setItem("isLogin", JSON.stringify(true));
     },
     likeBook: (state, action: PayloadAction<BookType>) => {
-      const data = localStorage.getItem("users");
-      if (data) {
-        const parsedData = JSON.parse(data);
-        state.users = parsedData;
-      }
+      state.users = getData();
       const id = JSON.parse(localStorage.getItem("loginnedUser")!);
       state.users.map((e) => {
         if (e.id == id) {
@@ -79,11 +77,7 @@ export const UserSlice = createSlice({
       });
     },
     disLikeApp: (state, action: PayloadAction<number>) => {
-      const data = localStorage.getItem("users");
-      if (data) {
-        const parsedData = JSON.parse(data);
-        state.users = parsedData;
-      }
+      state.users = getData();
       const id = JSON.parse(localStorage.getItem("loginnedUser")!);
       state.users.map((e) => {
         if (e.id == id) {
@@ -93,21 +87,13 @@ export const UserSlice = createSlice({
       localStorage.setItem("users", JSON.stringify(state.users));
     },
     getUsers: (state) => {
-      const data = localStorage.getItem("users");
-      if (data) {
-        const parsedData = JSON.parse(data);
-        state.users = parsedData;
-      }
+      state.users = getData()
     },
     isLogin: (state) => {
       state.isLogin = JSON.parse(localStorage.getItem("isLogin")!);
     },
     getLoginedUser: (state, action: PayloadAction<number>) => {
-      const data = localStorage.getItem("users");
-      if (data) {
-        const parsedData = JSON.parse(data);
-        state.users = parsedData;
-      }
+      state.users = getData()
       state.users.map((e) => {
         if (e.id == action.payload) state.loginnedUser = e;
       });
@@ -131,14 +117,14 @@ export const UserSlice = createSlice({
     deleteFromCart: (_state, action: PayloadAction<BookType[]>) => {
       const users: User[] = JSON.parse(localStorage.getItem("users")!);
       const myUserId = JSON.parse(localStorage.getItem("loginnedUser")!);
-      users.map(e => {
-        if(e.id == myUserId) {
-          const newCart = action.payload
-          e.cart = newCart
+      users.map((e) => {
+        if (e.id == myUserId) {
+          const newCart = action.payload;
+          e.cart = newCart;
         }
-      })
-      localStorage.setItem("users" , JSON.stringify(users))
-    }
+      });
+      localStorage.setItem("users", JSON.stringify(users));
+    },
   },
 });
 

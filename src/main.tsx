@@ -15,7 +15,6 @@ import Account from './components/User/Account.tsx'
 import SignUp from './components/User/SignUp.tsx'
 import Login from './components/User/Login.tsx'
 import ShowData from './components/Dashboard/ShowData.tsx'
-// import Protected from './Protected.tsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
