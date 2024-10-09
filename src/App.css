@@ -1,0 +1,16 @@
+@import "/node_modules/bootstrap/dist/css/bootstrap.min.css"; 
+@import "../node_modules/react-toastify/dist/ReactToastify.min.css";
+.form-floating>label {
+    left: 5px !important;
+}
+.heading h4 , .like {
+    cursor: pointer;
+}
+
+.book img {
+    height: 100%;
+}
+.stars svg {
+    cursor: pointer;
+    color: #fabb05;
+}
