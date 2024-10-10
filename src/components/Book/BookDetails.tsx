@@ -15,8 +15,6 @@ const BookDetails = () => {
     const [review, setReview] = useState("")
 
     // Get Local Books
-    // const initialBooks = useAppSelector(state => state.Book.books)
-    // const [books, setBooks] = useState<BookType[]>(initialBooks)
     const books = useAppSelector(state => state.Book.books)
 
     // Get Loginned User
@@ -27,7 +25,6 @@ const BookDetails = () => {
 
         // Get Data From Local Storage
         dispatch(getBooks())
-        // dispatch(getBooks())
 
         // Get Loginned User
         const user = JSON.parse(localStorage.getItem("loginnedUser")!)

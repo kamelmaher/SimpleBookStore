@@ -1,10 +1,8 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react"
 import { useAppDispatch, useAppSelector } from "../../Store/Store"
 import { getUsers, login } from "../../Store/UserSlice"
 import { NavLink, useNavigate } from "react-router-dom"
 import { toast } from "react-toastify"
-// import { useNavigate } from "react-router-dom"
 
 const Login = () => {
     const dispatch = useAppDispatch()

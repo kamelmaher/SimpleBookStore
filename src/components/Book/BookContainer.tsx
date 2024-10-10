@@ -13,15 +13,6 @@ const BookContainer = ({books}: BookContainer) => {
     useEffect(()=> {
         dispatch(getLoginedUser(JSON.parse(localStorage.getItem("loginnedUser")!)))
     } , [])
-    // https://www.googleapis.com/books/v1/volumes
-    // https://freetestapi.com/api/v1/books
-    // useEffect(() => {
-    //     const data = localStorage.getItem("books")
-    //     if(data) {
-    //         const parsedData = JSON.parse(data)
-    //         setBooks(parsedData)
-    //     }
-    // }, [])
     return (
         <div className="row">
             {
@@ -32,30 +23,6 @@ const BookContainer = ({books}: BookContainer) => {
                     </div>
                 })
             }
-            {/* <div className="col-md-4 col-lg-3">
-                <Book />
-            </div>
-            <div className="col-md-4 col-lg-3">
-                <Book />
-            </div>
-            <div className="col-md-4 col-lg-3">
-                <Book />
-            </div>
-            <div className="col-md-4 col-lg-3">
-                <Book />
-            </div>
-            <div className="col-md-4 col-lg-3">
-                <Book />
-            </div>
-            <div className="col-md-4 col-lg-3">
-                <Book />
-            </div>
-            <div className="col-md-4 col-lg-3">
-                <Book />
-            </div>
-            <div className="col-md-4 col-lg-3">
-                <Book />
-            </div> */}
         </div>
     )
 }

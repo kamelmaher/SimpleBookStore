@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom"
 import { deleteBook, getBooks } from "../../Store/BookSlice"
-// import { deleteCategory } from "../../Store/CategorySlice"
 import { useAppDispatch, useAppSelector } from "../../Store/Store"
 import { deleteCategory } from "../../Store/CategorySlice"
 import { toast } from "react-toastify"

@@ -57,6 +57,7 @@ const SignUp = () => {
                         const emailCheck = newUser.email != "" && regExp.test(newUser.email)
                         const passCheck = newUser.password.length > 6
                         if (nameCheck && emailCheck && passCheck && retypePass != "") {
+
                             // Check All Details 
                             setDetailsCheck(true)
 

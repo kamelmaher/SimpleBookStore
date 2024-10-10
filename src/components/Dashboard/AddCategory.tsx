@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 const AddCategory = () => {
     const navigate = useNavigate()
-    const [name , setName] = useState<string>("");
+    const [name , setName] = useState("");
     const dispatch = useAppDispatch()
     return (
         <div>

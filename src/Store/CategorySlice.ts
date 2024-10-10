@@ -1,58 +1,8 @@
 /** @format */
 
-// import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-// import { Book } from "./BookSlice";
-// export type Category = {
-//     name: string;
-//     books: Book[]
-// };
-// const initialCategory:Category[] = [
-//   {
-//     name: "Category 1",
-//     books: [
-//       { name: "Book 1", price: 10, desc: "Desc", Category: "Category 1" },
-//       { name: "Book 2", price: 10, desc: "Desc", Category: "Category 1" },
-//     ],
-//   },
-//   {
-//     name: "Category 2",
-//     books: [
-//       { name: "Book 3", price: 10, desc: "Desc", Category: "Category 2" },
-//       { name: "Book 4", price: 10, desc: "Desc", Category: "Category 2" },
-//     ],
-//   },
-//   {
-//     name: "Category 3",
-//     books: [
-//       { name: "Book 5", price: 10, desc: "Desc", Category: "Category 3" },
-//       { name: "Book 6", price: 10, desc: "Desc", Category: "Category 3" },
-//     ],
-//   },
-// ];
-// type CategoryState = {
-//   category: Category[];
-// };
-// const initialState: CategoryState = {
-//   category: initialCategory
-// };
-
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { BookType } from "./BookSlice";
 
-// export const CategorySlice = createSlice({
-//   name: "Category",
-//   initialState,
-//   reducers: {
-//     addCategory: (state, action: PayloadAction<Category>) => {
-//       state.category.push(action.payload);
-//     },
-//     filterBooks: (state , action:PayloadAction<string>) => {
-//       state.category = initialCategory.filter(e => e.name == action.payload);
-//     }
-//   },
-// });
-// export default CategorySlice.reducer;
-// export const { addCategory , filterBooks } = CategorySlice.actions;
 export type Category = {
   id: number;
   name: string;

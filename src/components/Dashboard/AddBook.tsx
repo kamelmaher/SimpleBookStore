@@ -6,9 +6,6 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 const AddBook = () => {
-    // const [newBook, setNewbook] = useState<string[]>([]) 
-    // const inputs = ["Title" , "Price" , "Category" , "Description"]
-    // const [books , setBooks] = useState<BookType[]>([])
     const [title, setTitle] = useState("")
     const [price, setPrice] = useState(0)
     const [category, setCategory] = useState("")
@@ -21,24 +18,6 @@ const AddBook = () => {
         <div>
             <form className="form">
                 <div className="row">
-                    {/* {
-                        inputs.map((inputItem, i) => {
-                            if (inputItem == "Description") return <div key={inputItem} className="form-floating mb-4 col-md-6">
-                                <textarea className="form-control" placeholder="Place Holder" onChange={e => {
-                                    setNewbook([...newBook, newBook[2] = e.target.value])
-                                }}/>
-                                <label>Description</label>
-                            </div> 
-                            else
-                            return <div key ={inputItem} className="form-floating mb-4 col-md-4 col-lg-4">
-                                <input type="text" className="form-control" placeholder="Test" onChange={(event)=> {
-                                    
-                                    console.log(newBook)
-                                    }}/>
-                                <label>{inputItem}</label>
-                            </div>
-                        })
-                    } */}
                     <div className="form-floating mb-4 col-md-4 col-lg-4">
                         <input value={title} type="text" className="form-control" placeholder="Test" onChange={(e) => {
                             setTitle(e.target.value)
