@@ -18,8 +18,9 @@ type BookProps = {
     desc: string;
     reviews: review[]
     liked: BookType[]
+    isLogin: boolean
 }
-const Book = ({ title, id, price, category, desc, reviews, liked }: BookProps) => {
+const Book = ({ title, id, price, category, desc, reviews, liked , isLogin }: BookProps) => {
     useEffect(() => {
         dispatch(getUsers())
         dispatch(getLoginedUser(JSON.parse(localStorage.getItem("loginnedUser")!)))
@@ -51,19 +52,22 @@ const Book = ({ title, id, price, category, desc, reviews, liked }: BookProps) =
                 <div className="text">
                     <p>{desc}</p>
                 </div>
-                <div className="like fs-3 text-danger">
-                    <FontAwesomeIcon icon={likedBook ? faHeart : faHeartReagular} onClick={() => {
-                        const likedBook: BookType = { title: title, id: id, price: price, Category: category, description: desc, reviews: [] }
-                        myuser.Liked.map(e => { if (e.id == likedBook.id) setFoundBook(true) })
-                        if (!foundBook) {
-                            dispatch(likeBook(likedBook))
-                            dispatch(getLoginedUser(JSON.parse(localStorage.getItem("loginnedUser")!)))
-                            toast.success("Book Liked!")
-                        }
-                    }} />
-                </div>
                 {
-                    reviews.length > 0 &&
+                    isLogin &&
+                    <div className="like fs-3 text-danger">
+                        <FontAwesomeIcon icon={likedBook ? faHeart : faHeartReagular} onClick={() => {
+                            const likedBook: BookType = { title: title, id: id, price: price, Category: category, description: desc, reviews: [] }
+                            myuser.Liked.map(e => { if (e.id == likedBook.id) setFoundBook(true) })
+                            if (!foundBook) {
+                                dispatch(likeBook(likedBook))
+                                dispatch(getLoginedUser(JSON.parse(localStorage.getItem("loginnedUser")!)))
+                                toast.success("Book Liked!")
+                            }
+                        }} />
+                    </div>
+                }
+                {
+                    reviews.length > 0 && 
                     <div className="d-flex gap-2 stars fs-5 mt-2">
                         {
                             Array.from({ length: 5 }).map((e, index) => {

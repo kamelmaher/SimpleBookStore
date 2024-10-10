@@ -38,6 +38,7 @@ const BookDetails = () => {
     const { bookid } = useParams()
     const myBook = books.filter(e => e.id == +(bookid!))
 
+
     // Check If The User Has Reviewed
     let hasReviewed = false
     if (myBook.length > 0) {
@@ -46,63 +47,67 @@ const BookDetails = () => {
         })
     }
 
+    const isLogin = JSON.parse(localStorage.getItem("isLogin")!) == true
     return (
         <div className="row justify-content-center">
             {
                 myBook.length > 0 &&
                 <>
                     <div className="col-md-8">
-                        <Book id={myBook[0].id} title={myBook[0].title} price={myBook[0].price} category={myBook[0].Category} desc={myBook[0].description} reviews={myBook[0].reviews} liked={myUser.Liked} />
+                        <Book isLogin={isLogin} id={myBook[0].id} title={myBook[0].title} price={myBook[0].price} category={myBook[0].Category} desc={myBook[0].description} reviews={myBook[0].reviews} liked={myUser.Liked} />
                     </div>
                     <div className="row">
                         <div className="review col-md-6 d-flex flex-column justify-content-center">
                             <h3>Rating</h3>
-                            <form className="form">
-                                <div className="d-flex gap-2 stars fs-5 mt-2">
-                                    {
-                                        Array.from({ length: 5 }).map((e, index) => {
+                            {isLogin ?
+                                <form className="form">
+                                    <div className="d-flex gap-2 stars fs-5 mt-2">
+                                        {
+                                            Array.from({ length: 5 }).map((e, index) => {
 
-                                            // This Is The Best Code That I have Wrote
-                                            return <FontAwesomeIcon key={index} icon={rate == 0 ? index <= hover ? faStarSolid : faStarRegular : rate > index ? faStarSolid : faStarRegular} onMouseEnter={() => {
-                                                setHover(index)
-                                            }}
-                                                onClick={() => {
-                                                    setRate(index + 1)
+                                                // This Is The Best Code That I have Wrote
+                                                return <FontAwesomeIcon key={index} icon={rate == 0 ? index <= hover ? faStarSolid : faStarRegular : rate > index ? faStarSolid : faStarRegular} onMouseEnter={() => {
+                                                    setHover(index)
                                                 }}
-                                            />
-                                        })
-                                    }
-                                </div>
-                                <div className="form-floating mt-3 mb-3">
-                                    <textarea className="form-control" placeholder="review" value={review} onChange={(e) => {
-                                        setReview(e.target.value);
-                                    }} />
-                                    <label>Review</label>
-                                </div>
-                                <button className="btn btn-primary" disabled={hasReviewed} onClick={e => {
-                                    e.preventDefault();
+                                                    onClick={() => {
+                                                        setRate(index + 1)
+                                                    }}
+                                                />
+                                            })
+                                        }
+                                    </div>
+                                    <div className="form-floating mt-3 mb-3">
+                                        <textarea className="form-control" placeholder="review" value={review} onChange={(e) => {
+                                            setReview(e.target.value);
+                                        }} />
+                                        <label>Review</label>
+                                    </div>
+                                    <button className="btn btn-primary" disabled={hasReviewed} onClick={e => {
+                                        e.preventDefault();
 
-                                    // Books => State
+                                        // Books => State
 
-                                    // Loginned User => Var
+                                        // Loginned User => Var
 
-                                    // MyBook => MyBook[0]
+                                        // MyBook => MyBook[0]
 
 
-                                    // Check If Details True  
-                                    if (rate > 0 && review != "") {
-                                        let userFound = false
-                                        myBook[0].reviews.map(user => {
-                                            if (user.user.id == myUser.id) userFound = true
-                                        })
-                                        if (!userFound) {
-                                            dispatch(rateBook({ book: myBook[0], review: { review, user: myUser, rate } }))
-                                            dispatch(getBooks())
+                                        // Check If Details True  
+                                        if (rate > 0 && review != "") {
+                                            let userFound = false
+                                            myBook[0].reviews.map(user => {
+                                                if (user.user.id == myUser.id) userFound = true
+                                            })
+                                            if (!userFound) {
+                                                dispatch(rateBook({ book: myBook[0], review: { review, user: myUser, rate } }))
+                                                dispatch(getBooks())
+                                            }
                                         }
                                     }
-                                }
-                                }>Review</button>
-                            </form>
+                                    }>Review</button>
+                                </form>
+                                : <h3>Please Login To Review This Book</h3>
+                            }
                         </div>
                         <div className="col-md-6">
                             <h3 className="text-center">Reviews</h3>

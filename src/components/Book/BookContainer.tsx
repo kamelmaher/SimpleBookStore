@@ -9,6 +9,7 @@ type BookContainer = {
 const BookContainer = ({books}: BookContainer) => {
     const myUser = useAppSelector(state => state.User.loginnedUser)
     const dispatch = useAppDispatch()
+    const isLoginned = JSON.parse(localStorage.getItem("isLogin")!) == true
     useEffect(()=> {
         dispatch(getLoginedUser(JSON.parse(localStorage.getItem("loginnedUser")!)))
     } , [])
@@ -27,7 +28,7 @@ const BookContainer = ({books}: BookContainer) => {
                 books.length <= 0 ? <h1> No Books Available</h1>
                 :books.map(e => {
                     return <div key={e.id} className="col-md-6">
-                        <Book id={e.id} title={e.title} price={e.price} category={e.Category} desc={e.description} reviews={e.reviews} liked={myUser.Liked}/>
+                        <Book isLogin= {isLoginned} id={e.id} title={e.title} price={e.price} category={e.Category} desc={e.description} reviews={e.reviews} liked={myUser.Liked}/>
                     </div>
                 })
             }
