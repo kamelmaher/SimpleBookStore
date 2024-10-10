@@ -6,6 +6,7 @@ import { useAppSelector } from './Store/Store'
 
 function App() {
   // Comment after Commit 
+  // Use email: admin123@gmail.com  password: pass123 to login as Admin
   const books = useAppSelector(state => state.Book.books)
   const [filteredBooks, setFilteredBooks] = useState<BookType[]>([])
   const category = [{ name: "All" }, ...useAppSelector(state => state.Category.category)]
