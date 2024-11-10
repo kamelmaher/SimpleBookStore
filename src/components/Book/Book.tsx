@@ -70,7 +70,7 @@ const Book = ({ title, id, price, category, desc, reviews, liked , isLogin }: Bo
                     reviews.length > 0 && 
                     <div className="d-flex gap-2 stars fs-5 mt-2">
                         {
-                            Array.from({ length: 5 }).map((e, index) => {
+                            Array.from({ length: 5 }).map((_, index) => {
                                 return <FontAwesomeIcon key={index} icon={reviews[0].rate <= index ? faStarRegular : faStar} />
                             })
                         }

@@ -60,7 +60,7 @@ const BookDetails = () => {
                                 <form className="form">
                                     <div className="d-flex gap-2 stars fs-5 mt-2">
                                         {
-                                            Array.from({ length: 5 }).map((e, index) => {
+                                            Array.from({ length: 5 }).map((_, index) => {
 
                                                 // This Is The Best Code That I have Wrote
                                                 return <FontAwesomeIcon key={index} icon={rate == 0 ? index <= hover ? faStarSolid : faStarRegular : rate > index ? faStarSolid : faStarRegular} onMouseEnter={() => {
